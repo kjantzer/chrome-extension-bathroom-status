@@ -1,0 +1,15 @@
+{
+  "name": "bathroom-status",
+  "version": "1.0.0",
+  "description": "![Version 0.1.0](https://img.shields.io/badge/Version-0.1.0-blue.svg) [![Install](https://img.shields.io/badge/Chrome_Webstore-Install-brightgreen.svg)](https://chrome.google.com/webstore/detail/ngieggdpiiohlhkbfgooiijpdclbcpii)",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kevin Jantzer",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.8.1"
+  }
+}
