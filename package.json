@@ -1,15 +1,13 @@
 {
   "name": "bathroom-status",
   "version": "1.0.0",
-  "description": "![Version 0.1.0](https://img.shields.io/badge/Version-0.1.0-blue.svg) [![Install](https://img.shields.io/badge/Chrome_Webstore-Install-brightgreen.svg)](https://chrome.google.com/webstore/detail/ngieggdpiiohlhkbfgooiijpdclbcpii)",
+  "description": "Shows the open/closed status of the bathrooms.",
   "main": "background.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel watch src/index.html src/background.js --public-url /dist/",
+    "build": "parcel build src/index.html src/background.js --public-url /dist/"
   },
   "keywords": [],
   "author": "Kevin Jantzer",
-  "license": "ISC",
-  "devDependencies": {
-    "parcel-bundler": "^1.8.1"
-  }
+  "license": "ISC"
 }

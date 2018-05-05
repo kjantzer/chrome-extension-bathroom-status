@@ -1,7 +1,7 @@
 {
-	"name": "Blackstone Bathroom Status",
-    "description" : "Shows the open/closed status of the bathrooms.",
-	"version": "0.3.0",
+	"name": "Bathroom Status",
+    "description" : "Display the open/closed status of the bathrooms doors",
+	"version": "1.0.0",
 	"icons": {
 		"32": "icons/32x32.png",
 		"64": "icons/64x64.png",
@@ -10,11 +10,11 @@
 	},
 	"browser_action": {
 		"default_icon": "icons/96x96.png",
-		"default_title": "Blackstone Bathroom Status",
-		"default_popup": "browser-action/index.html"
+		"default_title": "Bathroom Status",
+		"default_popup": "dist/index.html"
 	},
 	"background": {
-		"scripts": ["models.js", "background.js"]
+		"scripts": ["dist/background.js"]
 	},
 	"permissions": [
 		"https://www.mytaglist.com/*"

@@ -1,4 +1,7 @@
 
+const CONFIG = require('./config')
+const Sensors = require('./models')
+
 let sensors = new Sensors()
 let div = document.getElementById('statuses')
 
@@ -22,7 +25,10 @@ function fetch(){
 			let updated = m.isOpen ? 0 : m.lastUpdated('min')
 			
 			// if been closed for 10 min or more, show the time since it may be unoccupied
-			updated = updated >= 10 ? 'Closed for '+updated+' minutes, may be unoccupied' : ''
+			if( CONFIG.SHOW_TIME_AFTER && updated >= CONFIG.SHOW_TIME_AFTER )
+				updated = 'Closed for '+updated+' minutes, may be unoccupied'
+			else
+				updated = ''
 			
 			return `<div class="sensor" data-status=${status}>
 				<h2>${d.name}

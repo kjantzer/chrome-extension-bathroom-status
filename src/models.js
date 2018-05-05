@@ -4,7 +4,7 @@ const TagTypeMap = {
 	21: 'temp'
 }
 
-class Sensors {
+module.exports = class Sensors {
 	constructor(data) {
 		this.reset(data)
 	}
