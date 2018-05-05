@@ -10,7 +10,7 @@
 
 # How it Works
 
-Buy and install a [Reed KumoSensor](https://store.wirelesstag.net/products/reed-kumosensor) and [Ethernet Tag Manager](https://wirelesstags.myshopify.com/products/ethernet-tag-manager). 
+Buy and install a [Reed KumoSensor](https://store.wirelesstag.net/products/reed-kumosensor) and [Ethernet Tag Manager](https://wirelesstags.myshopify.com/products/ethernet-tag-manager). Add your API authorization token to the config file, build and install the extension and now the open/close status of your bathroom door(s) will be displayed in your chrome browser toolbar 👌
 
 # Building Extension
 
