@@ -11,8 +11,8 @@ module.exports = class Sensors {
 	
 	get length(){ return this.models.length }
 	
-	reset(data){
-		this.models = data ? data.map(d=>new Sensor(d)) : []
+	reset(data, notify=false){
+		this.models = data ? data.map(d=>new Sensor(d, notify)) : []
 	}
 	
 	toJSON(){
@@ -23,6 +23,10 @@ module.exports = class Sensors {
 		this.models.forEach(fn)
 	}
 	
+	get(id){
+		return this.models.find(m=>m.id==id)
+	}
+	
 	get numOpen(){
 		return this.models.filter(m=>m.isOpen).length
 	}
@@ -30,7 +34,7 @@ module.exports = class Sensors {
 
 
 class Sensor {
-	constructor(data) {
+	constructor(data, notify=false) {
 		this.data = data
 		
 		let wasOpen = JSON.parse(localStorage.getItem('sensor:'+this.id+':isOpen') || false);
@@ -39,6 +43,9 @@ class Sensor {
 			localStorage.setItem('sensor:'+this.id+':lastUpdated', (new Date).getTime())
 		
 		localStorage.setItem('sensor:'+this.id+':isOpen', this.isOpen)
+		
+		if( notify )
+			this.notifyIfWatching()
 	}
 	
 	get id(){ return this.data.uuid}
@@ -47,7 +54,7 @@ class Sensor {
 	
 	get isOpen(){ return this.data.eventState == 3}
 	
-	get battery(){ return this.data.batteryRemaining }
+	get battery(){ return this.data.batteryRemaining * 100 }
 	
 	get type(){ return TagTypeMap[this.data.tagType] || 'unknown' }
 	
@@ -77,6 +84,43 @@ class Sensor {
 	
 	toString(){
 		return this.name + ' ('+(this.isOpen?'Open':'Closed')+') '+this.lastCommRelative
+	}
+	
+	get isWatching(){
+		return this.watching().includes(this.id)
+	}
+	
+	watching(){
+		return JSON.parse(localStorage.getItem('sensor:watch')||'[]')
+	}
+	
+	watch(doWatch=true){
+		
+		let watching = this.watching()
+		let indx = watching.indexOf(this.id)
+		
+		if( doWatch && indx < 0 )
+			watching.push(this.id)
+			
+		else if( !doWatch && indx >= 0 )
+			watching.splice(indx, 1)
+		
+		localStorage.setItem('sensor:watch', JSON.stringify(watching))
+	}
+	
+	notifyIfWatching(){
+		// only notify when the bathroom is open
+		if( !this.isOpen || !this.isWatching ) return;
+		
+		chrome.notifications.create(String((new Date).getTime()), {
+			type: "basic",
+			title: 'Bathroom Status',
+			message: this.name+' is Open',
+			iconUrl: '../icons/128x128.png'
+		})
+		
+		// this.watch(false)
+		localStorage.setItem('sensor:watch', '[]') // stop watching all bathrooms
 	}
 	
 	// http://wirelesstag.net/jshtmlview.aspx?html=index.html&js=styles/client.js

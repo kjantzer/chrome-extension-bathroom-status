@@ -1,7 +1,7 @@
 {
 	"name": "Bathroom Status",
     "description" : "Display the open/closed status of the bathrooms doors",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"icons": {
 		"32": "icons/32x32.png",
 		"64": "icons/64x64.png",
@@ -17,6 +17,7 @@
 		"scripts": ["dist/background.js"]
 	},
 	"permissions": [
+		"notifications",
 		"https://www.mytaglist.com/*"
 	],
 	"manifest_version": 2

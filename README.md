@@ -1,12 +1,14 @@
 
 # <img src="icons/32x32.png"> Bathroom Status Chrome Extension
 
-![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-![Auhor](https://img.shields.io/badge/Author-Kevin_Jantzer-blue.svg)
+![Version 1.1.0](https://img.shields.io/badge/Version-1.1.0-blue.svg)
+![Author](https://img.shields.io/badge/Author-Kevin_Jantzer-blue.svg)
+[![Install](https://img.shields.io/badge/Chrome_Webstore-Install-brightgreen.svg)](https://chrome.google.com/webstore/detail/ngieggdpiiohlhkbfgooiijpdclbcpii)
+
 
 >Display the open/closed status of the bathrooms using door sensors by [WirelessTag.net](http://wirelesstag.net/)
 
-![screenshot](https://i.imgur.com/5v6dHdm.jpg)
+![screenshot](https://i.imgur.com/assHI11.jpg)
 
 # How it Works
 
@@ -32,5 +34,10 @@ Creating AUTH TOKEN → http://wirelesstag.net/eth/oauth2_apps.html
 
 # Changelog
 
-v1.0.0 • 2018-05-04
+#### v1.1.0 • 2018-10-05
+- Show battery level when low
+- Improve design
+- Closed bathrooms can be watched and a notification will be sent when open again
+
+#### v1.0.0 • 2018-05-04
 - Initial release

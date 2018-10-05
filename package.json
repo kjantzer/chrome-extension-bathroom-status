@@ -1,6 +1,6 @@
 {
   "name": "bathroom-status",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shows the open/closed status of the bathrooms.",
   "main": "background.js",
   "scripts": {

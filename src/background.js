@@ -4,7 +4,7 @@ const CONFIG = require('./config')
 var Sensors = require('./models')
 let sensors = new Sensors()
 
-function fetchSensors(){
+function fetchSensors(notify){
 	
 	return fetch(CONFIG.URL+'/ethClient.asmx/GetTagList2', {
 		method: 'post',
@@ -16,7 +16,7 @@ function fetchSensors(){
 	.then(resp=>resp.json())
 	.then(data=>{
 		
-		sensors.reset(data.d)
+		sensors.reset(data.d, notify!==false)
 		
 		updateBadge()
 		
@@ -32,7 +32,7 @@ function updateBadge(){
 	// set the toolbar badge color and text
 	if( numOpen > 0 ){
 		chrome.browserAction.setBadgeText({text: String(numOpen)})
-		chrome.browserAction.setBadgeBackgroundColor({color: '#66BB6A'})
+		chrome.browserAction.setBadgeBackgroundColor({color: '#27ae60'})
 	}else{
 		chrome.browserAction.setBadgeText({text: ' '})
 		chrome.browserAction.setBadgeBackgroundColor({color: '#ff1744'})
@@ -50,7 +50,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 	
 	if( req.cmd == 'status' ){
 		
-		fetchSensors().then(()=>{
+		fetchSensors(false).then(()=>{
 			sendResponse(sensors)
 		})
 		return true;

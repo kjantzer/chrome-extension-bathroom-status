@@ -29,17 +29,43 @@ function fetch(){
 				updated = 'Closed for '+updated+' minutes, may be unoccupied'
 			else
 				updated = ''
+				
+			if( m.isWatching ){
 			
-			return `<div class="sensor" data-status=${status}>
-				<h2>${d.name}
+				if( m.isOpen )
+					m.watch(false)
+				else
+					updated = '<span class="watching">Watching</span>...will notify when open'
+			}
+			
+			let battery = m.battery < CONFIG.BATTERY_WARNING_LEVEL ? `&nbsp;<img src="../src/battery.png"> ${m.battery}%` : ''
+			
+			return `<div class="sensor" data-status=${status} data-id="${m.id}">
+				<h2>${d.name} ${battery}
 					<span class="updated">${updated}</span>
 				</h2>
 				<h2 class="status">${status}</h2>
 			</div>`
 			
 		}).join("\n")
+		
+		document.querySelectorAll('.sensor').forEach(el=>{
+			el.addEventListener('click', watch)
+		})
 	})
 
+}
+
+function watch(e){
+	
+	let id = e.currentTarget.dataset.id
+	let sensor = sensors.get(id)
+		
+	if( !sensor || sensor.isOpen ) return;
+	
+	sensor.watch(!sensor.isWatching)
+	
+	e.currentTarget.querySelector('.updated').innerHTML = sensor.isWatching ? '<span class="watching">Watching</span>...will notify when open' : ''
 }
 
 fetch();
