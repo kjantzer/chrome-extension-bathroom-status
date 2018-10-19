@@ -3,7 +3,6 @@
 
 ![Version 1.1.0](https://img.shields.io/badge/Version-1.1.0-blue.svg)
 ![Author](https://img.shields.io/badge/Author-Kevin_Jantzer-blue.svg)
-[![Install](https://img.shields.io/badge/Chrome_Webstore-Install-brightgreen.svg)](https://chrome.google.com/webstore/detail/ngieggdpiiohlhkbfgooiijpdclbcpii)
 
 
 >Display the open/closed status of the bathrooms using door sensors by [WirelessTag.net](http://wirelesstag.net/)
